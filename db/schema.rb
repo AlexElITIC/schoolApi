@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_200910) do
+ActiveRecord::Schema.define(version: 2018_11_20_061017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,13 @@ ActiveRecord::Schema.define(version: 2018_10_23_200910) do
   end
 
   create_table "lectures", force: :cascade do |t|
-    t.datetime "start_date"
     t.string "classroom"
     t.integer "school_id"
     t.integer "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "start_date"
+    t.string "start_hour"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -67,13 +68,13 @@ ActiveRecord::Schema.define(version: 2018_10_23_200910) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "class_id"
     t.integer "activity_id"
     t.integer "student_id"
-    t.decimal "grade"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lecture_id"
+    t.integer "grade"
   end
 
   create_table "rules", force: :cascade do |t|
@@ -93,10 +94,10 @@ ActiveRecord::Schema.define(version: 2018_10_23_200910) do
 
   create_table "student_contracts", force: :cascade do |t|
     t.integer "contract_id"
-    t.string "student_id"
     t.datetime "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_id"
   end
 
   create_table "students", force: :cascade do |t|

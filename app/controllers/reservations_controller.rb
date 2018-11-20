@@ -3,9 +3,11 @@ class ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.all
-
+    @reservations = Reservation
+    @reservations = @reservations.where(:lecture_id => params&.[](:lecture_id)) if params&.[](:lecture_id)
+    @reservations = @reservations.all
     render json: {reservations: @reservations}
+
   end
 
   # GET /reservations/1
@@ -46,6 +48,6 @@ class ReservationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def reservation_params
-      params.require(:reservation).permit(:class_id, :activity_id, :student_id, :grade, :status)
+      params.require(:reservation).permit(:lecture_id, :activity_id, :student_id, :grade, :status)
     end
 end
