@@ -46,6 +46,6 @@ class LecturesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def lecture_params
-      params.require(:lecture).permit(:start_date, :classroom, :school_id, :teacher_id, :start_hour )
+      params.require(:lecture).permit(:start_date, :classroom, :school_id, :teacher_id, :start_hour,:lecture_rule_id )
     end
 end

@@ -1,0 +1,2 @@
+class LectureRule < ApplicationRecord
+end
