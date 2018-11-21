@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation
     @reservations = @reservations.where(:lecture_id => params&.[](:lecture_id)) if params&.[](:lecture_id)
+    @reservations = @reservations.where(:student_id => params&.[](:student_id)) if params&.[](:student_id)
     @reservations = @reservations.all
     render json: {reservations: @reservations}
 
